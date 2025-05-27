@@ -1,20 +1,21 @@
-import { useState } from 'react'
+import React from 'react'
+import { useState } from "react";
+import { nanoid } from 'nanoid'
+import Read from './components/Read';
+import Create from './components/create';
+const App = () => {
 
-function App() {
-
-  const [username, setUsername] = useState("")
-  const [age, setAge] = useState(1)
+  const [todo, settodo] = useState([{
+    id : nanoid(),
+    title : " kuch toh bnao",
+    isCompleted : false
+  }])
 
   return (
     <>
-      <h1>User Data</h1>
-
-      <form onSubmit={(e) => {e.preventDefault()}}>
-        <input onChange={(e)=>{setUsername(e.target.value)}} value={username} type="text" placeholder='Username'/>
-        <input onChange={(e)=>{setAge(e.target.value)}} value={age} type="number" placeholder='Age' />
-        <button>Submit</button>
-      </form>
-
+    <Create todo={todo} settodo={settodo}/>
+    <hr />
+    <Read todo={todo} settodo={settodo}/>
     </>
   )
 }
